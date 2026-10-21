@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void find(int a[], int n, int i, int max1, int max2) {
+void laba2(int a[], int n, int i, int max1, int max2) {
     if (i == n) {
         printf("2 max: %d\n", max2);
         return;
@@ -11,7 +11,7 @@ void find(int a[], int n, int i, int max1, int max2) {
     } else if (a[i] > max2) {
         max2 = a[i];
     }
-    find(a, n, i + 1, max1, max2);
+    laba2(a, n, i + 1, max1, max2);
 }
 
 int main() {
@@ -20,7 +20,7 @@ int main() {
     for (i = 0; i  < 10; i++) {
         scanf("%d", &a[i]);
     }
-    find(a, 10, 1, a[0], a[0]);
+    laba2(a, 10, 1, a[0], a[0]);
 
     return 0;
 }
