@@ -1,26 +1,29 @@
-#include <stdio.h>
+#!/bin/bash
 
-void laba2(int a[], int n, int i, int max1, int max2) {
-    if (i == n) {
-        printf("2 max: %d\n", max2);
-        return;
-    }
-    if (a[i] > max1) {
-        max2 = max1;
-        max1 = a[i];
-    } else if (a[i] > max2) {
-        max2 = a[i];
-    }
-    laba2(a, n, i + 1, max1, max2);
+laba2() {
+    if [ $1 -eq 10 ]; then
+        echo $3
+        return
+    fi
+
+    next=$(expr $1 + 1)
+    cur=${arr[$1]}
+
+    if [ $cur -gt $2 ]; then
+        laba2 $next $cur $2
+    elif [ $cur -gt $3 ]; then
+        laba2 $next $2 $cur
+    else
+        laba2 $next $2 $3
+    fi
 }
 
-int main() {
-    int a[10], i;
-    printf("vvedite 10 chisel:\n");
-    for (i = 0; i  < 10; i++) {
-        scanf("%d", &a[i]);
-    }
-    laba2(a, 10, 1, a[0], a[0]);
+echo "vvedite 10 chisel:"
+read -a arr
 
-    return 0;
-}
+if [ ${arr[0]} -gt ${arr[1]} ]; then
+    laba2 2 ${arr[0]} ${arr[1]}
+else
+    laba2 2 ${arr[1]} ${arr[0]}
+fi
+
